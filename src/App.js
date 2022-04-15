@@ -10,7 +10,7 @@ function App() {
 			try {
 				await Axios({
 					method: 'get',
-					url: 'promptapi.herokuapp.com/api/random',
+					url: 'https://promptapi.herokuapp.com/api/random',
 				})
 					.then(data => setPrompt(data))
 					.then(console.log(prompt));
