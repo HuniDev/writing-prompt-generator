@@ -6,20 +6,19 @@ function App() {
 	const [prompt, setPrompt] = useState([]);
 
 	useEffect(() => {
-		const getPrompt = async () => {
+		const getPrompts = async () => {
 			try {
-				await Axios({
-					method: 'get',
-					url: 'https://promptapi.herokuapp.com/api/random',
-				})
-					.then(data => setPrompt(data))
-					.then(console.log(prompt));
+				Axios.get('https://promptapi.herokuapp.com/api/random').then(res => {
+					let prompts = res.data[0].prompt;
+					setPrompt(prompts);
+				});
 			} catch (error) {
 				console.error(error);
 			}
 		};
-		getPrompt();
-	});
+		getPrompts();
+	}, []);
+	console.log(prompt);
 
 	return (
 		<div className='App'>
