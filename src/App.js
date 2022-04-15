@@ -1,9 +1,20 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import './App.css';
+import Home from './components/Home';
+import Display from './components/Display';
 
 function App() {
 	const [prompt, setPrompt] = useState([]);
+	const [show, setShow] = useState(false);
+
+	function handleClick() {
+		setShow(!show);
+	}
+
+	function handleRef() {
+		window.location.reload();
+	}
 
 	useEffect(() => {
 		const getPrompts = async () => {
@@ -22,19 +33,11 @@ function App() {
 
 	return (
 		<div className='App'>
-			<div className='is-flex is-justify-content-center is-align-items-center is-flex-direction-column pt-6'>
-				<h1 className='title is-2 has-text-white'>
-					Get A <span className='has-text-danger'>Prompt</span>
-				</h1>
-				<div className='mt-4 is-#282c34'>
-					<button className='button is-light is-rounded is-large mt-5'>
-						Generate
-					</button>
-				</div>
-			</div>
-			<h4 className='title is-5 has-text-grey myTag'>
-				Made by <span className='has-text-grey-lighter'>Hunidev</span>
-			</h4>
+			{show ? (
+				<Display prompt={prompt} handleRef={handleRef} />
+			) : (
+				<Home handleClick={handleClick} />
+			)}
 		</div>
 	);
 }
