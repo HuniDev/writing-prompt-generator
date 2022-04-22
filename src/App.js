@@ -29,7 +29,6 @@ function App() {
 		};
 		getPrompts();
 	}, []);
-	console.log(prompt);
 
 	return (
 		<div className='App'>
